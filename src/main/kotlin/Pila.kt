@@ -19,11 +19,13 @@ class Pila<T> : Iterable<T>{
     }
 
     fun push(elemento : T){
+        size += 1
         pila.add(elemento)
     }
 
     fun pop() : T?{
         if(isEmpty()) return null
+        size -= 1
         return pila.removeAt(pila.lastIndex)
     }
 
@@ -36,9 +38,20 @@ class Pila<T> : Iterable<T>{
         return pila.isEmpty()
     }
 
-    fun size() : Int{
-        return pila.size
+    var size : Int = pila.size
+
+}
+
+fun <T> reverse(origen : List<T>) : List<T>{
+    val pila = Pila<T>()
+    val listaInvertida : MutableList<T> = mutableListOf()
+    val iteradorLista = origen.iterator()
+    while(iteradorLista.hasNext()){
+        pila.push(iteradorLista.next())
     }
 
-
+    for(elemento in pila){
+        listaInvertida.add(elemento)
+    }
+    return listaInvertida.toList()
 }

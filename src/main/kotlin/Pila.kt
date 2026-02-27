@@ -1,5 +1,4 @@
-package org.iesra.revilofe
-
+package org.iesra.revilofe.un4.eje4_4
 class Pila<T> : Iterable<T>{
     private var pila = mutableListOf<T>()
 
@@ -23,13 +22,13 @@ class Pila<T> : Iterable<T>{
         pila.add(elemento)
     }
 
-    fun pop() : T?{
-        if(isEmpty()) return null
+    fun pop() : T{
+        if(isEmpty()) throw NoSuchElementException()
         return pila.removeAt(pila.lastIndex)
     }
 
-    fun peek() : T?{
-        if (isEmpty()) return null
+    fun peek() : T{
+        if (isEmpty()) throw NoSuchElementException()
         return pila[pila.lastIndex]
     }
 

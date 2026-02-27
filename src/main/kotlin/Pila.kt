@@ -5,27 +5,26 @@ class Pila<T> : Iterable<T>{
 
     override fun iterator(): Iterator<T> {
         return object : Iterator<T>{
-            var puntero : Int = pila.size
+            var puntero : Int = pila.size - 1
 
             override fun hasNext(): Boolean {
                 return puntero >= 0
             }
 
             override fun next(): T {
+                val elemento = pila[puntero]
                 puntero -= 1
-                return pila[puntero]
+                return elemento
             }
         }
     }
 
     fun push(elemento : T){
-        size += 1
         pila.add(elemento)
     }
 
     fun pop() : T?{
         if(isEmpty()) return null
-        size -= 1
         return pila.removeAt(pila.lastIndex)
     }
 
@@ -38,8 +37,8 @@ class Pila<T> : Iterable<T>{
         return pila.isEmpty()
     }
 
-    var size : Int = pila.size
-
+    val size : Int
+        get() = pila.size
 }
 
 fun <T> reverse(origen : List<T>) : List<T>{
@@ -54,4 +53,17 @@ fun <T> reverse(origen : List<T>) : List<T>{
         listaInvertida.add(elemento)
     }
     return listaInvertida.toList()
+}
+
+fun main() {
+    val numbers = listOf("one", "two", "three", "four")
+    val numbersRev = reverse(numbers)
+
+    if (listOf("four", "three", "two", "one") != numbersRev) {
+        println("Error")
+    } else {
+        println("Correcto")
+    }
+
+    println(numbersRev)
 }
